@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Management System</title>
+  <meta name="title" content="College Management System">
+  <meta name="description" content="HomePage by Prasanna Kumar">
+  <link rel="stylesheet" href="./static/font/font.css">
+  <link rel="stylesheet" href="./static/css/style.css">
+
+
+</head>
+
+<body>
+  <div class="preloader" data-preloader>
+    <div class="circle" data-circle></div>
+  </div>
+
+
+  <!-- HEADER -->
+
+  <header class="header" data-header style="background-color: white;">
+    <div class="container"  >
+
+      <a href="{{ url_for('index') }}" class="logo">
+        <img src="./static/images/CMS Logo.jpg" width="100" height="20" alt="CMS">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+          <a href="{{ url_for('index') }}" class="logo">
+            <img src="./static/images/CMS Logo.jpg" width="145" height="27" alt="CMS Home" >
+          </a>
+
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="{{ url_for('index') }}" class="navbar-link title-sm" data-nav-link>Home</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#gotoCategories" class="navbar-link title-sm" data-nav-link>Course Categories</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#gotoRanking" class="navbar-link title-sm" data-nav-link>Ranking</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#gotoApplication" class="navbar-link title-sm" data-nav-link>Application</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="{{ url_for('hostelpricing') }}" class="navbar-link title-sm" data-nav-link>Housing Facility</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#Updates&Inquiries" class="navbar-link title-sm" data-nav-link>Inquries</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="{{ url_for('aboutus') }}" class="navbar-link title-sm" data-nav-link>About Us</a>
+          </li>
+        </ul>
+
+      </nav>
+      
+      <a href="{{ url_for('login')}}" class="btn btn-tertiary">Sign In</a>
+
+      
+
+    </div>
+  </header>
+
+
+  <main>
+    <article>
+      
+      <div class="imagehovercontainer">
+        <img src="./static/images/USF1.jpg" alt="USF Logo">
+        <div class="textcontainer">
+          <h6>
+            OUR VISION:
+         </h6>
+         <p>
+           To be a World Class University providing value-based education,
+         conducting interdisciplinary research in cutting edge technologies 
+         leading to sustainable socio-economic development of the nation.
+         </p>
+         <br/>
+         <h6>
+           OUR MISSION:
+        </h6>
+        <p style="text-align:center;">
+          To produce technically competent and socially responsible engineers,
+           managers and entrepreneurs, who will be future ready..
+          
+       <p>To involve students and faculty in innovative research projects linked with industry,
+           academic and research institutions in India and abroad.</p>
+       <p>To use modern pedagogy for improving the teaching-learning process.</p>
+        </p>
+        </div>
+      </div>
+      
+<!-- JS Script for showing text on the image while hovering -->
+      <script>
+        
+        const imageContainer = document.querySelector('.imagehovercontainer');
+        
+        const textContainer = document.querySelector('.textcontainer');
+        
+        imageContainer.addEventListener('mouseover', function() {
+          textContainer.style.transform = 'translateX(0)';
+        });
+        
+        imageContainer.addEventListener('mouseout', function() {
+          textContainer.style.transform = 'translateX(100%)';
+        });
+          </script>
+        
+
+        <style>
+        .imagehovercontainer {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        width:100%;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+      }
+      
+      .imagehovercontainer img {
+        display: block;
+        width: 100%;
+        height:710px;
+      }
+      
+      .textcontainer {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 100%;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(100%);
+        z-index: 1;
+      }
+      
+      .imagehovercontainer:hover .textcontainer {
+        transform: translateX(0);
+      }
+        </style>
+
+ 
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .graphsection {
+      display: flex;
+      justify-content:first baseline;
+      align-items: stretch;
+      height: 100%;
+      width:50%
+
+    }
+    .canvas {
+      max-height: 100%;
+      max-width: 50%;
+    }
+  </style>
+  <h2 class="headline-md text-center section-title" style="padding-top: 25px;"  > 
+Rankings of Our College  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;      Students enrolled in different courses
+</h2>
+      <section class="graphsection" id="gotoRanking" width="50%" >
+    
+    <canvas id="rank-chart"  ></canvas>
+    <canvas id="enrollment-chart" ></canvas>
+  </section>
+  <script>
+    var rankCtx = document.getElementById('rank-chart').getContext('2d');
+    var rankChart = new Chart(rankCtx, {
+      type: 'line',
+
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Ranking given by State Government',
+          data: [1, 3, 2,4, 5, 5, 7, 8, 8,9, 10, 10],
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }]
+      },
+
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+
+    var enrollmentCtx = document.getElementById('enrollment-chart').getContext('2d');
+    var enrollmentChart = new Chart(enrollmentCtx, {
+      type: 'bar',
+
+      data: {
+        labels: ['Computer Science', 'Business Administration', 'Electrical Engineering', 'Nursing', 'Psychology'],
+        datasets: [{
+          label: 'Number of Students Enrolled',
+          data: [120, 80, 70, 50, 40],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.7)',
+            'rgba(54, 162, 235, 0.7)',
+            'rgba(255, 206, 86, 0.7)',
+            'rgba(75, 192, 192, 0.7)',
+            'rgba(153, 102, 255, 0.7)'
+          ],
+          borderWidth: 1
+        }]
+      },
+
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  </script>
+      
+
+      <section id="gotoCategories" class="section category has-bg-image" aria-labelledby="category-label"
+        style="background-image: url('./static/images/course-bg.png')" >
+        <div class="container">
+
+
+          <h2 class="headline-md text-center section-title">
+            Browse Top Available Course Categories 
+          </h2>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="card category-card">
+
+                <div class="card-icon">
+                  <img src="./static/images/category-1.jpg" width="72" height="72" loading="lazy"
+                    alt="Computer Science icon">
+                </div>
+
+                <div>
+                  <h3 class="title-lg">Computer Science</h3>
+
+                  <p class="title-sm">100 Courses</p>
+                </div>
+
+                <a href="{{ url_for('index') }}" class="layer-link" aria-label="Computer Science Category"></a>
+
+              </div>
+            </li>
+            <li>
+              <div class="card category-card">
+
+                <div class="card-icon">
+                  <img src="./static/images/category-6.jpg" width="72" height="72" loading="lazy" alt="Psychology icon">
+                </div>
+
+                <div>
+                  <h3 class="title-lg">Psychology</h3>
+
+                  <p class="title-sm">45 Courses</p>
+                </div>
+
+                <a href="{{ url_for('index') }}" class="layer-link" aria-label="Psychology Category"></a>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="card category-card">
+
+                <div class="card-icon">
+                  <img src="./static/images/category-3.jpg" width="72" height="72" loading="lazy"
+                    alt="Nursing icon">
+                </div>
+
+                <div>
+                  <h3 class="title-lg">Nursing</h3>
+
+                  <p class="title-sm">85 Courses</p>
+                </div>
+
+                <a href="{{ url_for('index') }}" class="layer-link" aria-label="Nursing Category"></a>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="card category-card">
+
+                <div class="card-icon">
+                  <img src="./static/images/category-2.jpg" width="72" height="72" loading="lazy"
+                    alt="Electrical Engineering icon">
+                </div>
+
+                <div>
+                  <h3 class="title-lg">Electrical Engineering</h3>
+
+                  <p class="title-sm">50 Courses</p>
+                </div>
+
+                <a href="{{ url_for('index') }}" class="layer-link" aria-label="Electrical Engineering Category"></a>
+
+              </div>
+            </li>
+
+            
+            <li>
+              <div class="card category-card">
+
+                <div class="card-icon">
+                  <img src="./static/images/category-4.jpg" width="72" height="72" loading="lazy"
+                    alt="Business Administration icon">
+                </div>
+
+                <div>
+                  <h3 class="title-lg">Business Administration</h3>
+
+                  <p class="title-sm">90 Courses</p>
+                </div>
+
+                <a href="{{ url_for('index') }}" class="layer-link" aria-label="Business Administration Category"></a>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="card category-card">
+
+                <div class="card-icon">
+                  <img src="./static/images/category-5.jpg" width="72" height="72" loading="lazy"
+                    alt="Data Science icon">
+                </div>
+
+                <div>
+                  <h3 class="title-lg">Data Science</h3>
+
+                  <p class="title-sm">150 Courses</p>
+                </div>
+
+                <a href="{{ url_for('index') }}" class="layer-link" aria-label="Data Science Category"></a>
+
+              </div>
+            </li>
+
+            
+
+          </ul>
+
+          <a href="{{ url_for('index') }}" class="btn btn-primary">View All Categories</a>
+
+        </div>
+      </section>
+    
+
+      <!--  Apply Now Section -->
+      <section class="cta" aria-labelledby="cta-label" id="gotoApplication">
+        <div class="container" >
+
+          <h2 class="headline-md section-title" id="cta-label" >
+            Education Is About Creating Leaders For Tomorrow
+          </h2>
+
+          <a href="{{ url_for('index') }}" class="btn btn-tertiary">Apply Today</a>
+
+        </div>
+      </section>
+    </article>
+  </main>
+</body>
+</html>
+  <!--FOOTER -->
+
+  <footer class="footer has-bg-image" style=" background-image: url('./static/images/footer-bg.png')" id="Updates&Inquiries">
+
+    <div class="section footer-top">
+      <div class="container">
+
+        <div class="footer-brand">
+
+          <a href="{{ url_for('index') }}" class="logo">
+            <img src="./static/images/CMS Logo.jpg" width="145" height="27">
+          </a>
+
+          <p class="title-sm footer-text">
+           College Management System Project by Team-4.
+           <br/>
+           * Prasanna Kumar <br/>
+           * Parimal Singh <br/>
+           * Swetha <br/>
+           * Lakshmi Tulasi
+          </p>
+
+          
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="headline-sm footer-list-title">Links</p>
+          </li>
+
+          <li>
+            <a href="#" class="title-sm footer-link">Home</a>
+          </li>
+
+          <li>
+            <a href="#" class="title-sm footer-link">About Us</a>
+          </li>
+
+          <li>
+            <a href="#" class="title-sm footer-link">Pricing</a>
+          </li>
+
+          <li>
+            <a href="#" class="title-sm footer-link">Courses</a>
+          </li>
+
+          <li>
+            <a href="{{ url_for('contactus')}}" class="title-sm footer-link">Contact Us</a>
+          </li>
+
+          <li>
+            <a href="#" class="title-sm footer-link">Blog</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="headline-sm footer-list-title">Legal</p>
+          </li>
+
+          <li>
+            <a href="#" class="title-sm footer-link">Legal</a>
+          </li>
+
+          <li>
+            <a href="#" class="title-sm footer-link">Term & Condition</a>
+          </li>
+
+          <li>
+            <a href="#" class="title-sm footer-link">Payment Method</a>
+          </li>
+
+          <li>
+            <a href="#" class="title-sm footer-link">Privacy Policy</a>
+          </li>
+
+        </ul>
+        
+       
+        <ul class="footer-list">
+
+          <li>
+            <p class="headline-sm footer-list-title">Social</p>
+          </li>
+
+
+          <ul class="">
+
+            <ul>
+              <a href="#" class="social-link">
+                <img src="./static/images/facebook.jpg" width="40" height="40" loading="lazy" alt="facebook">
+              </a>
+            </ul>
+            <br/>
+            <ul>
+              <a href="#" class="social-link">
+                <img src="./static/images/twitter.jpg" width="40" height="40" loading="lazy" alt="twitter">
+              </a>
+            </ul>
+            <br/>
+            <ul>
+              <a href="#" class="social-link">
+                <img src="./static/images/pinterest.jpg" width="40" height="40" loading="lazy" alt="pinterest">
+              </a>
+            </ul>
+            <br/>
+            <ul>
+              <a href="#" class="social-link">
+                <img src="./static/images/instagram.jpg" width="40" height="40" loading="lazy" alt="instagram">
+              </a>
+            </ul>
+            <br/> 
+          </ul>
+
+        </ul>
+        
+      </div>
+    </div>
+  </footer>
+  
+
+  <script src="./static/js/script.js"></script>
+
+  
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<section id="aboutussection">
+  <div class="aboutusimagelist" id="aboutus">
+    <div class="aboutusbox">
+        <img src="./static/images/Prasanna Kumar.png">
+        <div class="layer">
+            <h2 style="color: #fff;">Prasanna Kumar Tummala</h2> 
+            <br/>
+            <h3 style="color: #121212;">Homepage Designer and Js Charts</h3>
+            <div class="social-icons">
+                <p style="color: #040404; text-align:start; padding: 5%;" >
+                  Back in India, Prasanna has worked as salesforce developer for 3 years at Virtusa Pvt. Ltd. 
+                    Currently he's doing his masters in University of South Florida, USA. 
+                    He loves to visit new places, tries variety of foods and plays Valorant in leisure time.
+                    He has done the Homepage of this project and made it super responsive</p>
+            </div>
+        </div>
+    </div>
+    <div class="aboutusbox">
+        <img src="./static/images/praimal.png">
+        <div class="layer">
+            <h2 style="color: #fff;">Parimal Singh</h2>    <br/>
+            <h3 style="color: #000000;">About US Page</h3>
+            <div class="social-icons">
+                <p style="color: #000000;"> A graduate student in
+                    Business Analytics and Information Systems at USF. She has one year of experience as a software engineer at TCS</p>
+            </div>
+        </div>
+    </div>
+    <div class="aboutusbox">
+        <img src="./static/images/swetha.png">
+        <div class="layer">
+            <h2 style="color: #fff;">Swetha</h2>    <br/>
+            <h3 style="color: #000000;">Student</h3>  
+            <div class="social-icons">
+                 <p style="color: #070707;">Im a graduate student in Business Analytics and Information systems and I have four years of work experience in MicroStrategy. 
+                    I like to watch movies and play volleyball in my free time.</p>
+            </div>
+        </div>
+    </div>
+    <div class="aboutusbox">
+        <img src="./static/images/tulasi.png">
+        <div class="layer">
+            <h2 style="color: #fff;">Lakshmi Tulasi</h2>  <br/>  
+            <h3 style="color: #000000;">Student</h3>
+            <div class="social-icons">
+                <p style="color: #000000;">A graduate student in
+                    Business Analytics and Information Systems at USF. 
+                    She has one year of experience as a software engineer at TCS</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<style>
+
+.aboutusimagelist{
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+grid-gap: 5%;
+}
+.aboutusbox{
+position: relative;
+overflow: hidden;
+}
+.aboutusbox img{
+width: 100%;
+height: 100%;
+transition: transform 0.5s;
+}
+.imageicon{
+margin-top: 30px;
+}
+.imageicon a{
+text-decoration: none;
+font-size: 30px;
+margin-right: 0px;
+color: #ababab;
+display: inline-block;
+transition: transform 0.5s;
+}
+.imageicon a:hover{
+color: #ff004f;
+transform: translateY(-5px);
+}
+
+.layer{
+width: 100%;
+height: 0;
+background: linear-gradient(rgba(0,0,0,0.6), #ded8da);
+position: absolute;
+left: 0;
+bottom: 0;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+text-align: center;
+font-size: 14px;
+transition: height 0.5s;
+
+}
+.layer a{
+margin-top: 20px;
+color: #7b7074;
+text-decoration: none;
+font-size: 18px;
+line-height: 60px;
+background: #fff;
+width: 100%;
+height: 100%;
+text-align: justify;
+}
+.aboutusbox:hover img{
+transform: scale(1.1);
+}
+.aboutusbox:hover .layer{
+height: 100%;
+}
+.btna{
+display: block;
+margin: 50px auto;
+width: fit-content;
+border: 1px solid #ac9ea2;
+padding: 14px 50px;
+border-radius: 6px;
+text-decoration: none;
+color: #fff;
+transition: background 0.5s;
+}
+.btna:hover{
+background: #3f3f3f;
+}
+
+
+</style>
+
+</html>

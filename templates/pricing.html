@@ -1,0 +1,156 @@
+<html>
+    <div class="maindiv">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <center> <div class="pricingtitle">
+            <h1>Campus Housing Pricing</h1>
+        </div>
+    </center>
+    <div class="columns">
+        <ul class="price">
+          <li class="header">Basic</li>
+          <li class="grey">$349.99 / Month</li>
+          <li>1 student</li>
+          <li>15ft^2</li>
+          <li>Free Tv and Wifi</li>
+          <li>24/7 Support</li>
+          <center>
+          <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+    </center>
+          <li class="grey"><a href="#" class="button">Sign Up</a></li>
+        </ul>
+      </div>
+      
+      <div class="columns">
+        <ul class="price">
+          <li class="header" style="background-color:#000000">Pro</li>
+          <li class="grey">$ 449.99 / Month</li>
+          <li>2 students</li>
+          <li>35ft^2</li>
+          <li>Free Tv and Wifi</li>
+          <li>24/7 Support</li>
+        <center>
+          <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+    </center>
+          <li class="grey"><a href="#" class="button">Sign Up</a></li>
+        </ul>
+      </div>
+      
+      <div class="columns">
+        <ul class="price">
+          <li class="header">Premium</li>
+          <li class="grey">$ 649.99 / Month</li>
+          <li>3 students</li>
+          <li>75ft^2</li>
+          <li>Free Tv, Wifi and Food</li>
+          <li>24/7 Support</li>
+        <center>
+          <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+        </center>
+          <li class="grey"><a href="#" class="button">Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+      </body>
+    <style>
+        .maindiv{
+            background-image: url(/static/images/housing.jpg);
+        }
+        .checked {
+  color: orange;
+}
+        .pricingtitle h1 {
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+.pricingtitle h1:before {
+  width: 28px;
+  height: 5px;
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  margin-left: -14px;
+  background-color: #b80000;
+}
+.pricingtitle h1:after {
+  width: 100px;
+  height: 1px;
+  display: block;
+  content: "";
+  position: relative;
+  margin-top: 25px;
+  left: 50%;
+  margin-left: -50px;
+  background-color: #b80000;
+}
+* {
+    box-sizing: border-box;
+  }
+  
+  .columns {
+    float: left;
+    width: 33.3%;
+    padding: 8px;
+  }
+  
+  .price {
+    list-style-type: none;
+    border: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+  
+  .price:hover {
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+  }
+  
+  .price .header {
+    background-color: #111;
+    color: white;
+    font-size: 25px;
+  }
+  
+  .price li {
+    border-bottom: 1px solid #eee;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .price .grey {
+    background-color: #eee;
+    font-size: 20px;
+  }
+  
+  .button {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .columns {
+      width: 100%;
+    }
+  }
+    </style>
+</html>

@@ -1,0 +1,165 @@
+<html>
+   <center> <div class="aboutustitle">
+        <h1>About the Team</h1>
+    </div>
+</center>
+<section id="aboutussection">
+    <div class="aboutusimagelist" id="aboutus">
+      
+      <div class="aboutusbox">
+          <img src="./static/images/Prasanna Kumar.png">
+          <div class="layer">
+              <h2 style="color: #fff;">Prasanna Kumar Tummala</h2> 
+              <br/>
+              <h3 style="color: #121212;">Homepage Designer and Js Charts</h3>
+              <div class="social-icons">
+                  <p style="color: #040404; text-align:start; padding: 5%;" >
+                    Back in India, Prasanna has worked as salesforce developer for 3 years at Virtusa Pvt. Ltd. 
+                      Currently he's doing his masters in University of South Florida, USA. 
+                      He loves to visit new places, tries variety of foods and plays Valorant in leisure time.
+                      He has done the Homepage of this project and made it super responsive</p>
+              </div>
+          </div>
+      </div>
+      <div class="aboutusbox">
+          <img src="./static/images/praimal.png">
+          <div class="layer">
+              <h2 style="color: #fff;">Parimal Singh</h2>    <br/>
+              <h3 style="color: #000000;">About US Page</h3>
+              <div class="social-icons">
+                  <p style="color: #000000;"> A graduate student in
+                      Business Analytics and Information Systems at USF. She has one year of experience as a software engineer at TCS</p>
+              </div>
+          </div>
+      </div>
+      <div class="aboutusbox">
+          <img src="./static/images/swetha.png">
+          <div class="layer">
+              <h2 style="color: #fff;">Swetha</h2>    <br/>
+              <h3 style="color: #000000;">Student</h3>  
+              <div class="social-icons">
+                   <p style="color: #070707;">Im a graduate student in Business Analytics and Information systems and I have four years of work experience in MicroStrategy. 
+                      I like to watch movies and play volleyball in my free time.</p>
+              </div>
+          </div>
+      </div>
+      <div class="aboutusbox">
+          <img src="./static/images/tulasi.png">
+          <div class="layer">
+              <h2 style="color: #fff;">Lakshmi Tulasi</h2>  <br/>  
+              <h3 style="color: #000000;">Student</h3>
+              <div class="social-icons">
+                  <p style="color: #000000;">A graduate student in
+                      Business Analytics and Information Systems at USF. 
+                      She has one year of experience as a software engineer at TCS</p>
+              </div>
+          </div>
+  
+      </div>
+  </div>
+  </section>
+  
+  <style>
+  .aboutustitle h1 {
+text-align: center;
+    font-size:30px; font-weight:300; color:#222; letter-spacing:1px;
+    text-transform: uppercase;
+
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+}
+
+.aboutustitle h1:after,.aboutustitle h1:before {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid #c50000;
+    border-top: 1px solid #c50000;
+    height: 5px;
+  background-color:#f8f8f8;
+}
+
+  .aboutusimagelist{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 5%;
+  }
+  .aboutusbox{
+  position: relative;
+  overflow: hidden;
+  }
+  .aboutusbox img{
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  }
+  .imageicon{
+  margin-top: 30px;
+  }
+  .imageicon a{
+  text-decoration: none;
+  font-size: 30px;
+  margin-right: 0px;
+  color: #ababab;
+  display: inline-block;
+  transition: transform 0.5s;
+  }
+  .imageicon a:hover{
+  color: #ff004f;
+  transform: translateY(-5px);
+  }
+  
+  .layer{
+  width: 100%;
+  height: 0;
+  background: linear-gradient(rgba(0,0,0,0.6), #ded8da);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 14px;
+  transition: height 0.5s;
+  
+  }
+  .layer a{
+  margin-top: 20px;
+  color: #7b7074;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 60px;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  text-align: justify;
+  }
+  .aboutusbox:hover img{
+  transform: scale(1.1);
+  }
+  .aboutusbox:hover .layer{
+  height: 100%;
+  }
+  .btna{
+  display: block;
+  margin: 50px auto;
+  width: fit-content;
+  border: 1px solid #ac9ea2;
+  padding: 14px 50px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  transition: background 0.5s;
+  }
+  .btna:hover{
+  background: #3f3f3f;
+  }
+  
+  
+  </style>
+  </html>
